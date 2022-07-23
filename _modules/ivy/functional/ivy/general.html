@@ -129,6 +129,8 @@
 <span></span><span class="sd">&quot;&quot;&quot;Collection of general Ivy functions.&quot;&quot;&quot;</span>
 
 <span class="c1"># global</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
+
 <span class="kn">import</span> <span class="nn">gc</span>
 <span class="kn">import</span> <span class="nn">math</span>
 <span class="kn">import</span> <span class="nn">einops</span>
@@ -220,8 +222,7 @@
 
 
 <div class="viewcode-block" id="is_native_array"><a class="viewcode-back" href="../../../../functional/ivy/general/is_native_array.html#ivy.functional.ivy.general.is_native_array">[docs]</a><span class="k">def</span> <span class="nf">is_native_array</span><span class="p">(</span>
-    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
-    <span class="n">exclusive</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span> <span class="n">exclusive</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Determines whether the input x is a Native Array.</span>
@@ -1958,23 +1959,91 @@
     <span class="k">return</span> <span class="n">numerator</span> <span class="o">/</span> <span class="p">(</span><span class="n">denominator</span> <span class="o">+</span> <span class="n">default</span><span class="p">(</span><span class="n">min_denominator</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">_MIN_DENOMINATOR</span><span class="p">))</span></div>
 
 
-<div class="viewcode-block" id="stable_pow"><a class="viewcode-back" href="../../../../functional/ivy/general/stable_pow.html#ivy.functional.ivy.general.stable_pow">[docs]</a><span class="k">def</span> <span class="nf">stable_pow</span><span class="p">(</span><span class="n">base</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">exponent</span><span class="p">:</span> <span class="n">Any</span><span class="p">,</span> <span class="n">min_base</span><span class="p">:</span> <span class="nb">float</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Any</span><span class="p">:</span>
+<div class="viewcode-block" id="stable_pow"><a class="viewcode-back" href="../../../../functional/ivy/general/stable_pow/stable_pow_functional.html#ivy.functional.ivy.general.stable_pow">[docs]</a><span class="k">def</span> <span class="nf">stable_pow</span><span class="p">(</span>
+    <span class="n">base</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Number</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
+    <span class="n">exponent</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Number</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
+    <span class="n">min_base</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Number</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">Number</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Raise the base by the power, with MIN_BASE added to the base when exponent &gt; 1</span>
 <span class="sd">    for numerical stability.</span>
 
 <span class="sd">    Parameters</span>
 <span class="sd">    ----------</span>
 <span class="sd">    base</span>
-<span class="sd">        The numerator of the division.</span>
+<span class="sd">        The base of the exponentiation.</span>
 <span class="sd">    exponent</span>
-<span class="sd">        The denominator of the division.</span>
+<span class="sd">        The exponent of the exponentiation.</span>
 <span class="sd">    min_base</span>
 <span class="sd">        The minimum base to use, use global ivy._MIN_BASE by default.</span>
 
 <span class="sd">    Returns</span>
 <span class="sd">    -------</span>
 <span class="sd">    ret</span>
-<span class="sd">        The new item following the numerically stable division.</span>
+<span class="sd">        The new item following the numerically stable exponentiation.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    With :code:`int` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.stable_pow(3, 5)</span>
+<span class="sd">    &gt;&gt;&gt; print(x)</span>
+<span class="sd">    243.00405002700012</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.stable_pow(3, 4, min_base = 1)</span>
+<span class="sd">    &gt;&gt;&gt; print(x)</span>
+<span class="sd">    256</span>
+
+<span class="sd">    With :code:`float` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.stable_pow(3.05, 5.55)</span>
+<span class="sd">    &gt;&gt;&gt; print(x)</span>
+<span class="sd">    487.38483402344497</span>
+
+<span class="sd">    With :code:`complex` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.stable_pow(1+1, 1-1j)</span>
+<span class="sd">    &gt;&gt;&gt; print(x)</span>
+<span class="sd">    (1.5384791054689897-1.2779366346323036j)</span>
+
+<span class="sd">    With :code:`ivy.Array` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.asarray([2, 3, 4])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.stable_pow(x, 2)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    ivy.array([ 4,  9, 16])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.asarray([2., 4., 6.])</span>
+<span class="sd">    &gt;&gt;&gt; y = np.array((4, 3, 2))</span>
+<span class="sd">    &gt;&gt;&gt; z = ivy.stable_pow(x, y)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    ivy.array([16., 64., 36.])</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.asarray([2.0, 4.0, 81.0])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.asarray([2, 0.5, 3])</span>
+<span class="sd">    &gt;&gt;&gt; z = ivy.asarray([0.1, 0.2, 0.3])</span>
+<span class="sd">    &gt;&gt;&gt; print(ivy.stable_pow(x, y, min_base = z))</span>
+<span class="sd">    ivy.array([4.41e+00, 2.05e+00, 5.37e+05])</span>
+
+<span class="sd">    With :code:`ivy.Container` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a = ivy.asarray([2., 4.]), b = ivy.asarray([3., 6.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.stable_pow(x, 2)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([4., 16.]),</span>
+<span class="sd">        b: ivy.array([9., 36.])</span>
+<span class="sd">    }</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a = ivy.asarray([3., 4.]), b = ivy.asarray([9., 6.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a = ivy.asarray([2, 3]), b = ivy.asarray([0.5, 4]))</span>
+<span class="sd">    &gt;&gt;&gt; z = ivy.stable_pow(x, y)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([9., 64.]),</span>
+<span class="sd">        b: ivy.array([3., 1300.])</span>
+<span class="sd">    }</span>
+
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># noinspection PyProtectedMember</span>
@@ -2673,7 +2742,7 @@
 <span class="k">def</span> <span class="nf">indices_where</span><span class="p">(</span>
     <span class="n">x</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">],</span>
     <span class="o">*</span><span class="p">,</span>
-    <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="n">out</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
 <span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Union</span><span class="p">[</span><span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">]:</span>
     <span class="sd">&quot;&quot;&quot;Returns indices or true elements in an input boolean array.</span>
 

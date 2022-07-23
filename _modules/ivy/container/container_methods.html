@@ -7686,11 +7686,13 @@
 
 <span class="c1">#ivy.container.general</span>
 <span class="c1"># global</span>
+<span class="kn">from</span> <span class="nn">numbers</span> <span class="kn">import</span> <span class="n">Number</span>
 <span class="kn">from</span> <span class="nn">typing</span> <span class="kn">import</span> <span class="n">Any</span><span class="p">,</span> <span class="n">Union</span><span class="p">,</span> <span class="n">List</span><span class="p">,</span> <span class="n">Dict</span><span class="p">,</span> <span class="n">Iterable</span><span class="p">,</span> <span class="n">Optional</span>
 
 <span class="c1"># local</span>
 <span class="kn">from</span> <span class="nn">ivy.container.base</span> <span class="kn">import</span> <span class="n">ContainerBase</span>
 <span class="kn">import</span> <span class="nn">ivy</span>
+
 
 <span class="c1"># ToDo: implement all methods here as public instance methods</span>
 
@@ -8124,6 +8126,189 @@
 <span class="sd">    {</span>
 <span class="sd">        a: array([1., 0., 0., 1.], dtype=float32),</span>
 <span class="sd">        b: array([1, 1, -1, 0], dtype=int32)</span>
+<span class="sd">    }</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="static_stable_pow"><a class="viewcode-back" href="../../../functional/ivy/general/stable_pow/static_stable_pow_container.html#ivy.container.container_methods.static_stable_pow">[docs]</a><span class="k">def</span> <span class="nf">static_stable_pow</span><span class="p">(</span>
+    <span class="n">base</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
+    <span class="n">exponent</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Number</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
+    <span class="n">min_base</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Number</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">key_chains</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Union</span><span class="p">[</span><span class="n">List</span><span class="p">[</span><span class="nb">str</span><span class="p">],</span> <span class="n">Dict</span><span class="p">[</span><span class="nb">str</span><span class="p">,</span> <span class="nb">str</span><span class="p">]]]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Container static method variant of ivy.stable_pow. This method simply</span>
+<span class="sd">    wraps the function, and so the docstring for ivy.stable_pow also applies</span>
+<span class="sd">    to this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    base</span>
+<span class="sd">        Container of the bases of the exponentiation.</span>
+<span class="sd">    exponent</span>
+<span class="sd">        Container of the exponents of the exponentiation.</span>
+<span class="sd">    min_base</span>
+<span class="sd">        Container of the minimum base to use,</span>
+<span class="sd">        use global ivy._MIN_DENOMINATOR by default.</span>
+<span class="sd">    key_chains</span>
+<span class="sd">        The key-chains to apply or not apply the method to. Default is None.</span>
+<span class="sd">    to_apply</span>
+<span class="sd">        If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">        will be skipped. Default is True.</span>
+<span class="sd">    prune_unapplied</span>
+<span class="sd">        Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">        Default is False.</span>
+<span class="sd">    map_sequences</span>
+<span class="sd">        Whether to also map method to sequences (lists, tuples). Default is False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        A container of elements containing the new items following the numerically</span>
+<span class="sd">        stable exponentiation.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.asarray([10., 15.]), b=ivy.asarray([20., 25.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container.stable_pow(x, 3)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([1000., 3380.]),</span>
+<span class="sd">        b: ivy.array([8000., 15600.])</span>
+<span class="sd">    }</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=3, b=10)</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.asarray([4, 5])</span>
+<span class="sd">    &gt;&gt;&gt; z = ivy.Container.stable_pow(x, y)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: array([81.00108001, 243.00405003]),</span>
+<span class="sd">        b: array([10000.04000006, 100000.500001])</span>
+<span class="sd">    }</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=3, b=10)</span>
+<span class="sd">    &gt;&gt;&gt; y = np.array((4.5, 9))</span>
+<span class="sd">    &gt;&gt;&gt; z = ivy.Container.stable_pow(x, y)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: array([140.29821987, 19683.59049787]),</span>
+<span class="sd">        b: array([3.16229189e+04, 1.00000900e+09])</span>
+<span class="sd">    }</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.asarray([7., 2.]), b=ivy.asarray([3., 4.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.asarray([0.5, 2.5]), b=ivy.asarray([3.5, 1.5]))</span>
+<span class="sd">    &gt;&gt;&gt; z = ivy.Container.stable_pow(x, y)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([2.65, 5.66]),</span>
+<span class="sd">        b: ivy.array([46.8, 8.])</span>
+<span class="sd">    }</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.asarray([1.5, 2.], [3., 4.]),\</span>
+<span class="sd">    ... b=ivy.asarray([5., 6.], [7., 8.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.asarray([0.5, 2.5]), b=ivy.asarray([3.5, 1.5]))</span>
+<span class="sd">    &gt;&gt;&gt; z = ivy.Container.stable_pow(x, y, min_base=2)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([1.87, 32.]),</span>
+<span class="sd">        b: ivy.array([907., 22.6])</span>
+<span class="sd">    }</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="stable_pow"><a class="viewcode-back" href="../../../functional/ivy/general/stable_pow/stable_pow_container.html#ivy.container.container_methods.stable_pow">[docs]</a><span class="k">def</span> <span class="nf">stable_pow</span><span class="p">(</span>
+    <span class="bp">self</span><span class="p">:</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">,</span>
+    <span class="n">exponent</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Number</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">],</span>
+    <span class="n">min_base</span><span class="p">:</span> <span class="n">Union</span><span class="p">[</span><span class="n">Number</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Array</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">NativeArray</span><span class="p">,</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+    <span class="n">to_apply</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">True</span><span class="p">,</span>
+    <span class="n">prune_unapplied</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+    <span class="n">map_sequences</span><span class="p">:</span> <span class="nb">bool</span> <span class="o">=</span> <span class="kc">False</span><span class="p">,</span>
+<span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ivy.Container static method variant of ivy.stable_pow. This method simply</span>
+<span class="sd">    wraps the function, and so the docstring for ivy.stable_pow also applies</span>
+<span class="sd">    to this method with minimal changes.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    base</span>
+<span class="sd">        Container of the bases of the exponentiation.</span>
+<span class="sd">    exponent</span>
+<span class="sd">        Container of the exponents of the exponentiation.</span>
+<span class="sd">    min_base</span>
+<span class="sd">        Container of the minimum base to use,</span>
+<span class="sd">        use global ivy._MIN_DENOMINATOR by default.</span>
+<span class="sd">    key_chains</span>
+<span class="sd">        The key-chains to apply or not apply the method to. Default is None.</span>
+<span class="sd">    to_apply</span>
+<span class="sd">        If True, the method will be applied to key_chains, otherwise key_chains</span>
+<span class="sd">        will be skipped. Default is True.</span>
+<span class="sd">    prune_unapplied</span>
+<span class="sd">        Whether to prune key_chains for which the function was not applied.</span>
+<span class="sd">        Default is False.</span>
+<span class="sd">    map_sequences</span>
+<span class="sd">        Whether to also map method to sequences (lists, tuples). Default is False.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    ret</span>
+<span class="sd">        A container of elements containing the new items following the numerically</span>
+<span class="sd">        stable exponentiation.</span>
+
+<span class="sd">    Examples</span>
+<span class="sd">    --------</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.asarray([10., 15.]), b=ivy.asarray([20., 25.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container.stable_pow(x, 3)</span>
+<span class="sd">    &gt;&gt;&gt; print(y)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([1000., 3380.]),</span>
+<span class="sd">        b: ivy.array([8000., 15600.])</span>
+<span class="sd">    }</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=3, b=10)</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.asarray([4, 5])</span>
+<span class="sd">    &gt;&gt;&gt; z = ivy.Container.stable_pow(x, y)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: array([81.00108001, 243.00405003]),</span>
+<span class="sd">        b: array([10000.04000006, 100000.500001])</span>
+<span class="sd">    }</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=3, b=10)</span>
+<span class="sd">    &gt;&gt;&gt; y = np.array((4.5, 9))</span>
+<span class="sd">    &gt;&gt;&gt; z = ivy.Container.stable_pow(x, y)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: array([140.29821987, 19683.59049787]),</span>
+<span class="sd">        b: array([3.16229189e+04, 1.00000900e+09])</span>
+<span class="sd">    }</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.asarray([7., 2.]), b=ivy.asarray([3., 4.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.asarray([0.5, 2.5]), b=ivy.asarray([3.5, 1.5]))</span>
+<span class="sd">    &gt;&gt;&gt; z = ivy.Container.stable_pow(x, y)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([2.65, 5.66]),</span>
+<span class="sd">        b: ivy.array([46.8, 8.])</span>
+<span class="sd">    }</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.asarray([1.5, 2.], [3., 4.]),\</span>
+<span class="sd">    ... b=ivy.asarray([5., 6.], [7., 8.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.asarray([0.5, 2.5]), b=ivy.asarray([3.5, 1.5]))</span>
+<span class="sd">    &gt;&gt;&gt; z = ivy.Container.stable_pow(x, y, min_base=2)</span>
+<span class="sd">    &gt;&gt;&gt; print(z)</span>
+<span class="sd">    {</span>
+<span class="sd">        a: ivy.array([1.87, 32.]),</span>
+<span class="sd">        b: ivy.array([907., 22.6])</span>
 <span class="sd">    }</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
