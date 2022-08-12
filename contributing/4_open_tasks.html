@@ -60,6 +60,7 @@
 </li>
 <li class="toctree-l1"><a class="reference internal" href="../deep_dive.html">Deep Dive</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../faq.html">FAQ</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../glossary.html">Glossary</a></li>
 </ul>
 <p class="caption" role="heading"><span class="caption-text">Functions</span></p>
 <ul>
@@ -209,7 +210,7 @@ yourself.</p></li>
 <li><p>add the correct <a class="reference internal" href="../deep_dive/12_docstrings.html#docstrings"><span class="std std-ref">Docstrings</span></a> to every function <strong>and</strong> its <em>relevant methods</em>,
 including those you did not implement yourself.</p></li>
 <li><p>add thorough <a class="reference internal" href="../deep_dive/13_docstring_examples.html#docstring-examples"><span class="std std-ref">Docstring Examples</span></a> for every function <strong>and</strong> its
-<em>relevant methods</em></p></li>
+<em>relevant methods</em> and ensure they pass the docstring tests.</p></li>
 </ol>
 </section>
 <section id="frontend-apis">
@@ -227,6 +228,21 @@ for this task, which is explained below.</p>
 <li><p>write tests for your function by following the <a class="reference external" href="https://lets-unify.ai/ivy/deep_dive/17_ivy_frontends_tests.html">Ivy Frontend Tests</a> guide</p></li>
 <li><p>verify that the tests for your function are passing</p></li>
 </ol>
+<p>There are a few points to take note of when working on your chosen frontend function:</p>
+<ol class="arabic simple">
+<li><p>you should only implement <strong>one</strong> frontend function.</p></li>
+<li><p>the frontend function is framework-specific, thus it should be implemented in
+its respective frontend framework only.</p></li>
+<li><p>each frontend function should be tested on all backends to ensure that conversions
+are working correctly.</p></li>
+<li><p>type hints, docstrings and examples are not required for frontend functions.</p></li>
+</ol>
+<p>In the case where your chosen function exists in all frameworks by default, but
+is not implemented in Ivy’s functional API, please convert your existing GitHub
+issue to request for the function to be added to Ivy. Meanwhile, you can select
+another frontend function to work on from the ToDo list! If you’re stuck on a
+function which requires complex compositions, you’re allowed to reselect a function
+too!</p>
 <p><strong>Round Up</strong></p>
 <p>This should have hopefully given you a good understanding of the basics for contributing.</p>
 <p>If you’re ever unsure of how best to proceed,
