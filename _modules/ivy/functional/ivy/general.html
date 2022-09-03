@@ -2445,7 +2445,7 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    With :code:`int` input:</span>
+<span class="sd">    With :code:`Number` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.stable_pow(3, 5)</span>
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
@@ -2455,13 +2455,9 @@
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
 <span class="sd">    256</span>
 
-<span class="sd">    With :code:`float` input:</span>
-
 <span class="sd">    &gt;&gt;&gt; x = ivy.stable_pow(3.05, 5.55)</span>
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
 <span class="sd">    487.38483402344497</span>
-
-<span class="sd">    With :code:`complex` input:</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.stable_pow(1+1, 1-1j)</span>
 <span class="sd">    &gt;&gt;&gt; print(x)</span>
@@ -2469,26 +2465,20 @@
 
 <span class="sd">    With :code:`ivy.Array` input:</span>
 
-<span class="sd">    &gt;&gt;&gt; x = ivy.asarray([2, 3, 4])</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([2, 3, 4])</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.stable_pow(x, 2)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    ivy.array([ 4,  9, 16])</span>
 
-<span class="sd">    &gt;&gt;&gt; x = ivy.asarray([2., 4., 6.])</span>
-<span class="sd">    &gt;&gt;&gt; y = np.array((4, 3, 2))</span>
-<span class="sd">    &gt;&gt;&gt; z = ivy.stable_pow(x, y)</span>
-<span class="sd">    &gt;&gt;&gt; print(z)</span>
-<span class="sd">    ivy.array([16., 64., 36.])</span>
-
-<span class="sd">    &gt;&gt;&gt; x = ivy.asarray([2.0, 4.0, 81.0])</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.asarray([2, 0.5, 3])</span>
-<span class="sd">    &gt;&gt;&gt; z = ivy.asarray([0.1, 0.2, 0.3])</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.array([2.0, 4.0, 81.0])</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.array([2, 0.5, 3])</span>
+<span class="sd">    &gt;&gt;&gt; z = ivy.array([0.1, 0.2, 0.3])</span>
 <span class="sd">    &gt;&gt;&gt; print(ivy.stable_pow(x, y, min_base = z))</span>
 <span class="sd">    ivy.array([4.41e+00, 2.05e+00, 5.37e+05])</span>
 
-<span class="sd">    With :code:`ivy.Container` input:</span>
+<span class="sd">    With one :code:`ivy.Container` input:</span>
 
-<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a = ivy.asarray([2., 4.]), b = ivy.asarray([3., 6.]))</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a = ivy.array([2., 4.]), b = ivy.array([3., 6.]))</span>
 <span class="sd">    &gt;&gt;&gt; y = ivy.stable_pow(x, 2)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    {</span>
@@ -2496,8 +2486,10 @@
 <span class="sd">        b: ivy.array([9., 36.])</span>
 <span class="sd">    }</span>
 
-<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a = ivy.asarray([3., 4.]), b = ivy.asarray([9., 6.]))</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a = ivy.asarray([2, 3]), b = ivy.asarray([0.5, 4]))</span>
+<span class="sd">    With multiple :code:`ivy.Container` input:</span>
+
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a = ivy.array([3., 4.]), b = ivy.array([9., 6.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a = ivy.array([2, 3]), b = ivy.array([0.5, 4]))</span>
 <span class="sd">    &gt;&gt;&gt; z = ivy.stable_pow(x, y)</span>
 <span class="sd">    &gt;&gt;&gt; print(z)</span>
 <span class="sd">    {</span>

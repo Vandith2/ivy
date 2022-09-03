@@ -11105,8 +11105,8 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.asarray([10., 15.]), b=ivy.asarray([20., 25.]))</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.Container.static_stable_pow(x, 3)</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([10., 15.]), b=ivy.array([20., 25.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = x.static_stable_pow(3)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    {</span>
 <span class="sd">        a: ivy.array([1000., 3380.]),</span>
@@ -11114,36 +11114,27 @@
 <span class="sd">    }</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=3, b=10)</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.asarray([4, 5])</span>
-<span class="sd">    &gt;&gt;&gt; z = ivy.Container.static_stable_pow(x, y)</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.array([4, 5])</span>
+<span class="sd">    &gt;&gt;&gt; z = x.static_stable_pow(y)</span>
 <span class="sd">    &gt;&gt;&gt; print(z)</span>
 <span class="sd">    {</span>
 <span class="sd">        a: array([81.00108001, 243.00405003]),</span>
 <span class="sd">        b: array([10000.04000006, 100000.500001])</span>
 <span class="sd">    }</span>
 
-<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=3, b=10)</span>
-<span class="sd">    &gt;&gt;&gt; y = np.array((4.5, 9))</span>
-<span class="sd">    &gt;&gt;&gt; z = ivy.Container.static_stable_pow(x, y)</span>
-<span class="sd">    &gt;&gt;&gt; print(z)</span>
-<span class="sd">    {</span>
-<span class="sd">        a: array([140.29821987, 19683.59049787]),</span>
-<span class="sd">        b: array([3.16229189e+04, 1.00000900e+09])</span>
-<span class="sd">    }</span>
-
-<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.asarray([7., 2.]), b=ivy.asarray([3., 4.]))</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.asarray([0.5, 2.5]), b=ivy.asarray([3.5, 1.5]))</span>
-<span class="sd">    &gt;&gt;&gt; z = ivy.Container.static_stable_pow(x, y)</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([7., 2.]), b=ivy.array([3., 4.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([0.5, 2.5]), b=ivy.array([3.5, 1.5]))</span>
+<span class="sd">    &gt;&gt;&gt; z = x.static_stable_pow(y)</span>
 <span class="sd">    &gt;&gt;&gt; print(z)</span>
 <span class="sd">    {</span>
 <span class="sd">        a: ivy.array([2.65, 5.66]),</span>
 <span class="sd">        b: ivy.array([46.8, 8.])</span>
 <span class="sd">    }</span>
 
-<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.asarray([1.5, 2.], [3., 4.]),\</span>
-<span class="sd">    ... b=ivy.asarray([5., 6.], [7., 8.]))</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.asarray([0.5, 2.5]), b=ivy.asarray([3.5, 1.5]))</span>
-<span class="sd">    &gt;&gt;&gt; z = ivy.Container.static_stable_pow(x, y, min_base=2)</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1.5, 2.], [3., 4.]),\</span>
+<span class="sd">                          b=ivy.array([5., 6.], [7., 8.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([0.5, 2.5]), b=ivy.array([3.5, 1.5]))</span>
+<span class="sd">    &gt;&gt;&gt; z = x.static_stable_pow(y, min_base=2)</span>
 <span class="sd">    &gt;&gt;&gt; print(z)</span>
 <span class="sd">    {</span>
 <span class="sd">        a: ivy.array([1.87, 32.]),</span>
@@ -11195,8 +11186,8 @@
 
 <span class="sd">    Examples</span>
 <span class="sd">    --------</span>
-<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.asarray([10., 15.]), b=ivy.asarray([20., 25.]))</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.Container.stable_pow(x, 3)</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([10., 15.]), b=ivy.array([20., 25.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = x.stable_pow(3)</span>
 <span class="sd">    &gt;&gt;&gt; print(y)</span>
 <span class="sd">    {</span>
 <span class="sd">        a: ivy.array([1000., 3380.]),</span>
@@ -11204,36 +11195,27 @@
 <span class="sd">    }</span>
 
 <span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=3, b=10)</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.asarray([4, 5])</span>
-<span class="sd">    &gt;&gt;&gt; z = ivy.Container.stable_pow(x, y)</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.array([4, 5])</span>
+<span class="sd">    &gt;&gt;&gt; z = x.stable_pow(y)</span>
 <span class="sd">    &gt;&gt;&gt; print(z)</span>
 <span class="sd">    {</span>
 <span class="sd">        a: array([81.00108001, 243.00405003]),</span>
 <span class="sd">        b: array([10000.04000006, 100000.500001])</span>
 <span class="sd">    }</span>
 
-<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=3, b=10)</span>
-<span class="sd">    &gt;&gt;&gt; y = np.array((4.5, 9))</span>
-<span class="sd">    &gt;&gt;&gt; z = ivy.Container.stable_pow(x, y)</span>
-<span class="sd">    &gt;&gt;&gt; print(z)</span>
-<span class="sd">    {</span>
-<span class="sd">        a: array([140.29821987, 19683.59049787]),</span>
-<span class="sd">        b: array([3.16229189e+04, 1.00000900e+09])</span>
-<span class="sd">    }</span>
-
-<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.asarray([7., 2.]), b=ivy.asarray([3., 4.]))</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.asarray([0.5, 2.5]), b=ivy.asarray([3.5, 1.5]))</span>
-<span class="sd">    &gt;&gt;&gt; z = ivy.Container.stable_pow(x, y)</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([7., 2.]), b=ivy.array([3., 4.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([0.5, 2.5]), b=ivy.array([3.5, 1.5]))</span>
+<span class="sd">    &gt;&gt;&gt; z = x.stable_pow(y)</span>
 <span class="sd">    &gt;&gt;&gt; print(z)</span>
 <span class="sd">    {</span>
 <span class="sd">        a: ivy.array([2.65, 5.66]),</span>
 <span class="sd">        b: ivy.array([46.8, 8.])</span>
 <span class="sd">    }</span>
 
-<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.asarray([1.5, 2.], [3., 4.]),\</span>
-<span class="sd">    ... b=ivy.asarray([5., 6.], [7., 8.]))</span>
-<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.asarray([0.5, 2.5]), b=ivy.asarray([3.5, 1.5]))</span>
-<span class="sd">    &gt;&gt;&gt; z = ivy.Container.stable_pow(x, y, min_base=2)</span>
+<span class="sd">    &gt;&gt;&gt; x = ivy.Container(a=ivy.array([1.5, 2.], [3., 4.]),\</span>
+<span class="sd">                          b=ivy.array([5., 6.], [7., 8.]))</span>
+<span class="sd">    &gt;&gt;&gt; y = ivy.Container(a=ivy.array([0.5, 2.5]), b=ivy.array([3.5, 1.5]))</span>
+<span class="sd">    &gt;&gt;&gt; z = x.stable_pow(y, min_base=2)</span>
 <span class="sd">    &gt;&gt;&gt; print(z)</span>
 <span class="sd">    {</span>
 <span class="sd">        a: ivy.array([1.87, 32.]),</span>
