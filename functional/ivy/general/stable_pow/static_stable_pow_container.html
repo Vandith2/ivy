@@ -247,7 +247,7 @@ stable exponentiation.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">y</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">static_stable_pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
 <span class="go">{</span>
-<span class="go">    a: array([1000.00287, 3375.0063], dtype=float32),</span>
+<span class="go">    a: ivy.array([1000.00287, 3375.0063], dtype=float32),</span>
 <span class="go">    b: array([8000.011, 15625.018], dtype=float32)</span>
 <span class="go">}</span>
 </pre></div>
@@ -257,8 +257,8 @@ stable exponentiation.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">static_stable_pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 <span class="go">{</span>
-<span class="go">    a: array([81.00108001, 243.00405003]),</span>
-<span class="go">    b: array([10000.04000006, 100000.500001])</span>
+<span class="go">    a: ivy.array([81.00108001, 243.00405003]),</span>
+<span class="go">    b: ivy.array([10000.04000006, 100000.500001])</span>
 <span class="go">}</span>
 </pre></div>
 </div>
@@ -267,8 +267,8 @@ stable exponentiation.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">static_stable_pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 <span class="go">{</span>
-<span class="go">    a: array([2.6457531, 5.656925], dtype=float32),</span>
-<span class="go">    b: array([46.76592, 8.0000305], dtype=float32)</span>
+<span class="go">    a: ivy.array([2.6457531, 5.656925], dtype=float32),</span>
+<span class="go">    b: ivy.array([46.76592, 8.0000305], dtype=float32)</span>
 <span class="go">}</span>
 </pre></div>
 </div>
@@ -277,9 +277,9 @@ stable exponentiation.</p>
 <span class="gp">&gt;&gt;&gt; </span><span class="n">z</span> <span class="o">=</span> <span class="n">ivy</span><span class="o">.</span><span class="n">Container</span><span class="o">.</span><span class="n">static_stable_pow</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">y</span><span class="p">,</span> <span class="n">min_base</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
 <span class="gp">&gt;&gt;&gt; </span><span class="nb">print</span><span class="p">(</span><span class="n">z</span><span class="p">)</span>
 <span class="go">{</span>
-<span class="go">    a: array([[1.8708287, 32.],</span>
+<span class="go">    a: ivy.array([[1.8708287, 32.],</span>
 <span class="go">              [2.236068, 88.18163]], dtype=float32),</span>
-<span class="go">    b: array([[907.4927, 22.627417],</span>
+<span class="go">    b: ivy.array([[907.4927, 22.627417],</span>
 <span class="go">              [2187., 31.622776]], dtype=float32)</span>
 <span class="go">}</span>
 </pre></div>
